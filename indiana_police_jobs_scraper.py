@@ -406,11 +406,15 @@ class IndianaPoliceJobsScraper:
                 lat, lon = self.county_coordinates[county]
                 job_count = len(jobs)
                 
+                # Get current timestamp for last scraped
+                current_time = datetime.now().strftime('%B %d, %Y at %I:%M %p')
+                
                 # Create popup content
                 popup_content = f"""
                 <div style="width: 350px;">
                     <h3>{county} County</h3>
                     <p><strong>Job Opportunities: {job_count}</strong></p>
+                    <p style="font-size: 11px; color: #666; margin: 5px 0;">📅 Last updated: {current_time}</p>
                     <hr>
                 """
                 
@@ -455,22 +459,25 @@ class IndianaPoliceJobsScraper:
                     tooltip=f"{county} County: {job_count} job(s)"
                 ).add_to(m)
         
+        # Get current timestamp for last scraped
+        current_time = datetime.now().strftime('%B %d, %Y at %I:%M %p')
+        
         # Add legend
-        legend_html = '''
+        legend_html = f'''
         <style>
-        @media (max-width: 768px) {
-            .legend {
+        @media (max-width: 768px) {{
+            .legend {{
                 bottom: 10px !important;
                 left: 10px !important;
                 width: 150px !important;
-                height: 100px !important;
+                height: 120px !important;
                 font-size: 12px !important;
                 padding: 8px !important;
-            }
-        }
+            }}
+        }}
         </style>
         <div class="legend" style="position: fixed; 
-                    bottom: 50px; left: 50px; width: 200px; height: 120px; 
+                    bottom: 50px; left: 50px; width: 200px; height: 140px; 
                     background-color: white; border:2px solid grey; z-index:9999; 
                     font-size:14px; padding: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
         <p style="margin: 0 0 8px 0;"><strong>Job Opportunities</strong></p>
@@ -478,6 +485,8 @@ class IndianaPoliceJobsScraper:
         <p style="margin: 4px 0;"><span style="color:#ff9800;">●</span> 2 jobs</p>
         <p style="margin: 4px 0;"><span style="color:#ff5722;">●</span> 3 jobs</p>
         <p style="margin: 4px 0;"><span style="color:#f44336;">●</span> 4+ jobs</p>
+        <hr style="margin: 8px 0; border: none; border-top: 1px solid #ddd;">
+        <p style="margin: 4px 0; font-size: 11px; color: #666;">📅 Updated: {current_time}</p>
         </div>
         '''
         m.get_root().html.add_child(folium.Element(legend_html))
@@ -495,6 +504,9 @@ class IndianaPoliceJobsScraper:
         
         # Sort jobs by county and department
         all_jobs.sort(key=lambda x: (x['county'], x['department']))
+        
+        # Get current timestamp for last scraped
+        current_time = datetime.now().strftime('%B %d, %Y at %I:%M %p')
         
         side_panel_html = f"""
         <style>
@@ -546,6 +558,9 @@ class IndianaPoliceJobsScraper:
             <div style="background-color: #007bff; color: white; padding: 8px; margin: -10px -10px 10px -10px; display: flex; justify-content: space-between; align-items: center;">
                 <h3 style="margin: 0; font-size: 16px;">Indiana Police Jobs ({len(all_jobs)} total)</h3>
                 <button onclick="toggleSidePanel()" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer; display: none;" class="close-btn">×</button>
+            </div>
+            <div style="background-color: #f8f9fa; padding: 5px; margin-bottom: 10px; border-radius: 3px; font-size: 10px; color: #666; text-align: center;">
+                📅 Last updated: {current_time}
             </div>
             <div style="margin-bottom: 10px;">
                 <input type="text" id="jobSearch" placeholder="Search jobs..." 
@@ -655,27 +670,34 @@ class IndianaPoliceJobsScraper:
     
     def create_jobs_table_html(self, county_jobs):
         """Create an HTML table of all job opportunities"""
-        html_content = """
+        # Get current timestamp for last scraped
+        current_time = datetime.now().strftime('%B %d, %Y at %I:%M %p')
+        
+        html_content = f"""
         <!DOCTYPE html>
         <html>
         <head>
             <title>Indiana Police Jobs - Complete Listing</title>
             <style>
-                body { font-family: Arial, sans-serif; margin: 20px; }
-                table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-                th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-                th { background-color: #f2f2f2; font-weight: bold; }
-                tr:nth-child(even) { background-color: #f9f9f9; }
-                tr:hover { background-color: #f5f5f5; }
-                .closing-date { color: red; font-weight: bold; }
-                .contact-info { font-size: 0.9em; color: #666; }
-                .county-header { background-color: #007bff; color: white; padding: 10px; margin-top: 20px; }
-                .job-details { max-width: 400px; }
+                body {{ font-family: Arial, sans-serif; margin: 20px; }}
+                table {{ border-collapse: collapse; width: 100%; margin-top: 20px; }}
+                th, td {{ border: 1px solid #ddd; padding: 12px; text-align: left; }}
+                th {{ background-color: #f2f2f2; font-weight: bold; }}
+                tr:nth-child(even) {{ background-color: #f9f9f9; }}
+                tr:hover {{ background-color: #f5f5f5; }}
+                .closing-date {{ color: red; font-weight: bold; }}
+                .contact-info {{ font-size: 0.9em; color: #666; }}
+                .county-header {{ background-color: #007bff; color: white; padding: 10px; margin-top: 20px; }}
+                .job-details {{ max-width: 400px; }}
+                .last-updated {{ background-color: #f8f9fa; padding: 10px; border-radius: 5px; margin: 10px 0; text-align: center; color: #666; }}
             </style>
         </head>
         <body>
             <h1>Indiana Law Enforcement Job Opportunities</h1>
             <p>Complete listing of all available positions across Indiana counties</p>
+            <div class="last-updated">
+                📅 <strong>Last Updated:</strong> {current_time}
+            </div>
         """
         
         total_jobs = sum(len(jobs) for jobs in county_jobs.values())
