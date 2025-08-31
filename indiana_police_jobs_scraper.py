@@ -457,15 +457,27 @@ class IndianaPoliceJobsScraper:
         
         # Add legend
         legend_html = '''
-        <div style="position: fixed; 
+        <style>
+        @media (max-width: 768px) {
+            .legend {
+                bottom: 10px !important;
+                left: 10px !important;
+                width: 150px !important;
+                height: 100px !important;
+                font-size: 12px !important;
+                padding: 8px !important;
+            }
+        }
+        </style>
+        <div class="legend" style="position: fixed; 
                     bottom: 50px; left: 50px; width: 200px; height: 120px; 
                     background-color: white; border:2px solid grey; z-index:9999; 
-                    font-size:14px; padding: 10px">
-        <p><strong>Job Opportunities</strong></p>
-        <p><span style="color:#ffeb3b;">●</span> 1 job</p>
-        <p><span style="color:#ff9800;">●</span> 2 jobs</p>
-        <p><span style="color:#ff5722;">●</span> 3 jobs</p>
-        <p><span style="color:#f44336;">●</span> 4+ jobs</p>
+                    font-size:14px; padding: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+        <p style="margin: 0 0 8px 0;"><strong>Job Opportunities</strong></p>
+        <p style="margin: 4px 0;"><span style="color:#ffeb3b;">●</span> 1 job</p>
+        <p style="margin: 4px 0;"><span style="color:#ff9800;">●</span> 2 jobs</p>
+        <p style="margin: 4px 0;"><span style="color:#ff5722;">●</span> 3 jobs</p>
+        <p style="margin: 4px 0;"><span style="color:#f44336;">●</span> 4+ jobs</p>
         </div>
         '''
         m.get_root().html.add_child(folium.Element(legend_html))
@@ -485,12 +497,55 @@ class IndianaPoliceJobsScraper:
         all_jobs.sort(key=lambda x: (x['county'], x['department']))
         
         side_panel_html = f"""
-        <div style="position: fixed; 
+        <style>
+        @media (max-width: 768px) {{
+            .side-panel {{
+                width: 100% !important;
+                height: 100vh !important;
+                top: 0 !important;
+                right: 0 !important;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }}
+            .side-panel.open {{
+                transform: translateX(0);
+            }}
+            .toggle-btn {{
+                display: block !important;
+            }}
+            .map-container {{
+                margin-right: 0 !important;
+            }}
+        }}
+        @media (min-width: 769px) {{
+            .side-panel {{
+                transform: translateX(0) !important;
+            }}
+            .toggle-btn {{
+                display: none !important;
+            }}
+            .map-container {{
+                margin-right: 350px !important;
+            }}
+        }}
+        </style>
+        
+        <!-- Toggle Button for Mobile -->
+        <button class="toggle-btn" onclick="toggleSidePanel()" 
+                style="position: fixed; top: 10px; right: 10px; z-index: 10000; 
+                       background: #007bff; color: white; border: none; padding: 10px 15px; 
+                       border-radius: 5px; font-size: 14px; font-weight: bold; cursor: pointer;
+                       box-shadow: 0 2px 5px rgba(0,0,0,0.2); display: none;">
+            📋 Jobs ({len(all_jobs)})
+        </button>
+        
+        <div class="side-panel" id="sidePanel" style="position: fixed; 
                     top: 10px; right: 10px; width: 350px; height: 90vh; 
                     background-color: white; border:2px solid #007bff; z-index:9999; 
                     font-size:12px; padding: 10px; overflow-y: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-            <div style="background-color: #007bff; color: white; padding: 8px; margin: -10px -10px 10px -10px;">
+            <div style="background-color: #007bff; color: white; padding: 8px; margin: -10px -10px 10px -10px; display: flex; justify-content: space-between; align-items: center;">
                 <h3 style="margin: 0; font-size: 16px;">Indiana Police Jobs ({len(all_jobs)} total)</h3>
+                <button onclick="toggleSidePanel()" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer; display: none;" class="close-btn">×</button>
             </div>
             <div style="margin-bottom: 10px;">
                 <input type="text" id="jobSearch" placeholder="Search jobs..." 
@@ -561,6 +616,38 @@ class IndianaPoliceJobsScraper:
                 }
             }
         }
+        
+        function toggleSidePanel() {
+            var panel = document.getElementById('sidePanel');
+            var toggleBtn = document.querySelector('.toggle-btn');
+            var closeBtn = document.querySelector('.close-btn');
+            
+            if (panel.classList.contains('open')) {
+                panel.classList.remove('open');
+                if (toggleBtn) toggleBtn.style.display = 'block';
+                if (closeBtn) closeBtn.style.display = 'none';
+            } else {
+                panel.classList.add('open');
+                if (toggleBtn) toggleBtn.style.display = 'none';
+                if (closeBtn) closeBtn.style.display = 'block';
+            }
+        }
+        
+        // Show close button on mobile
+        function updateMobileUI() {
+            var closeBtn = document.querySelector('.close-btn');
+            if (window.innerWidth <= 768) {
+                if (closeBtn) closeBtn.style.display = 'block';
+            } else {
+                if (closeBtn) closeBtn.style.display = 'none';
+            }
+        }
+        
+        // Update UI on window resize
+        window.addEventListener('resize', updateMobileUI);
+        
+        // Initialize mobile UI
+        updateMobileUI();
         </script>
         """
         
