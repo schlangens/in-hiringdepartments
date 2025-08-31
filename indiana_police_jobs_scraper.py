@@ -369,6 +369,112 @@ class IndianaPoliceJobsScraper:
         
         return None
     
+    def get_department_info(self, department_name):
+        """Get department information, badge, and fast facts"""
+        department_lower = department_name.lower()
+        
+        # Department information database
+        department_info = {
+            'indianapolis metropolitan police department': {
+                'badge': '🟦',
+                'website': 'https://www.indy.gov/agency/metropolitan-police-department',
+                'fast_facts': 'Largest police department in Indiana • 1,700+ sworn officers • Founded 1970'
+            },
+            'fort wayne police department': {
+                'badge': '🟧',
+                'website': 'https://www.cityoffortwayne.org/police-department.html',
+                'fast_facts': 'Second largest department • 450+ officers • Community policing focus'
+            },
+            'evansville police department': {
+                'badge': '🟨',
+                'website': 'https://www.evansvillepolice.com/',
+                'fast_facts': 'River city department • 300+ officers • Strong community partnerships'
+            },
+            'south bend police department': {
+                'badge': '🟩',
+                'website': 'https://southbendin.gov/departments/police/',
+                'fast_facts': 'Notre Dame area • 250+ officers • University collaboration'
+            },
+            'indiana state police': {
+                'badge': '🟥',
+                'website': 'https://www.in.gov/isp/',
+                'fast_facts': 'Statewide jurisdiction • 1,300+ troopers • Highway patrol focus'
+            },
+            'lake county sheriff': {
+                'badge': '🟪',
+                'website': 'https://www.lakecountyin.org/sheriff',
+                'fast_facts': 'Largest county sheriff • 400+ deputies • Gary area coverage'
+            },
+            'marion county sheriff': {
+                'badge': '🟫',
+                'website': 'https://www.indy.gov/agency/marion-county-sheriff-s-office',
+                'fast_facts': 'Indianapolis area • 300+ deputies • Court security focus'
+            },
+            'hamilton county sheriff': {
+                'badge': '🔵',
+                'website': 'https://www.hamiltoncounty.in.gov/sheriff/',
+                'fast_facts': 'Fastest growing county • 200+ deputies • Suburban focus'
+            },
+            'allen county sheriff': {
+                'badge': '🟢',
+                'website': 'https://www.allencountysheriff.com/',
+                'fast_facts': 'Fort Wayne area • 150+ deputies • Rural & urban mix'
+            },
+            'vanderburgh county sheriff': {
+                'badge': '🟡',
+                'website': 'https://www.vanderburghsheriff.com/',
+                'fast_facts': 'Evansville area • 100+ deputies • Countywide jurisdiction'
+            }
+        }
+        
+        # Try exact match first
+        if department_name in department_info:
+            return department_info[department_name]
+        
+        # Try partial matches
+        for key, info in department_info.items():
+            if key in department_lower or department_lower in key:
+                return info
+        
+        # Check for common patterns
+        if 'sheriff' in department_lower:
+            return {
+                'badge': '🛡️',
+                'website': None,
+                'fast_facts': 'County law enforcement • Elected position • Rural jurisdiction'
+            }
+        elif 'police department' in department_lower:
+            return {
+                'badge': '👮',
+                'website': None,
+                'fast_facts': 'Municipal law enforcement • Sworn officers • Community service'
+            }
+        elif 'university' in department_lower:
+            return {
+                'badge': '🎓',
+                'website': None,
+                'fast_facts': 'Campus law enforcement • Student safety • University jurisdiction'
+            }
+        elif 'airport' in department_lower:
+            return {
+                'badge': '✈️',
+                'website': None,
+                'fast_facts': 'Aviation security • Federal regulations • Transportation safety'
+            }
+        elif 'correction' in department_lower:
+            return {
+                'badge': '🔒',
+                'website': None,
+                'fast_facts': 'Corrections facility • Inmate supervision • Rehabilitation focus'
+            }
+        
+        # Default for unknown departments
+        return {
+            'badge': '🏛️',
+            'website': None,
+            'fast_facts': 'Law enforcement agency • Public safety • Community service'
+        }
+    
     def process_job_data(self, job_listings):
         """Process job listings and group by county"""
         county_jobs = defaultdict(list)
@@ -419,14 +525,22 @@ class IndianaPoliceJobsScraper:
                 """
                 
                 for i, job in enumerate(jobs[:5]):  # Show first 5 jobs
+                    # Get department information
+                    dept_info = self.get_department_info(job['department'])
+                    
                     popup_content += f"""
                     <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">
-                        <strong>{job['department']}</strong><br>
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                            <span style="font-size: 18px; margin-right: 8px;">{dept_info['badge']}</span>
+                            <strong>{job['department']}</strong>
+                        </div>
                         <em>{job['location']}</em><br>
+                        <small style="color: #666; font-style: italic;">{dept_info['fast_facts']}</small><br>
                         {job['details'][:100]}...<br>
                         <small>Posted: {job['date_posted']}</small>
                         {f'<br><small style="color: red;">Closing: {job["closing_date"]}</small>' if job['closing_date'] else ''}
                         <br><a href="{job['ilea_link']}" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>
+                        {f'<br><a href="{dept_info["website"]}" target="_blank" style="color: #28a745; text-decoration: underline; font-size: 12px;">🌐 Department Website</a>' if dept_info['website'] else ''}
                     </div>
                     """
                 
@@ -495,12 +609,19 @@ class IndianaPoliceJobsScraper:
     
     def create_side_panel_html(self, county_jobs):
         """Create a side panel with job listings"""
-        # Collect all jobs for the side panel
+        # Collect all jobs for the side panel and remove duplicates
         all_jobs = []
+        seen_jobs = set()  # Track unique job identifiers
+        
         for county, jobs in county_jobs.items():
             for job in jobs:
-                job['county'] = county
-                all_jobs.append(job)
+                # Create unique identifier for deduplication
+                job_id = f"{job['department']}_{job['location']}_{job['anchor_id']}"
+                
+                if job_id not in seen_jobs:
+                    seen_jobs.add(job_id)
+                    job['county'] = county
+                    all_jobs.append(job)
         
         # Sort jobs by county and department
         all_jobs.sort(key=lambda x: (x['county'], x['department']))
@@ -583,16 +704,36 @@ class IndianaPoliceJobsScraper:
                     </div>
                 """
             
+            # Get department information
+            dept_info = self.get_department_info(job['department'])
             closing_date_text = f"<br><span style='color: red; font-size: 10px;'>Closes: {job['closing_date']}</span>" if job['closing_date'] else ""
+            
+            # Create department website link if available
+            dept_website_link = ""
+            if dept_info['website']:
+                dept_website_link = f"""
+                <div style="margin-top: 3px;">
+                    <a href="{dept_info['website']}" target="_blank" 
+                       style="color: #28a745; text-decoration: none; font-size: 9px;">
+                        🌐 Department Website →
+                    </a>
+                </div>
+                """
             
             side_panel_html += f"""
                 <div class="job-item" data-department="{job['department'].lower()}" data-county="{job['county'].lower()}">
                     <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
-                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
-                            {job['department']}
+                        <div style="display: flex; align-items: center; margin-bottom: 3px;">
+                            <span style="font-size: 16px; margin-right: 5px;">{dept_info['badge']}</span>
+                            <div style="font-weight: bold; font-size: 11px; color: #333;">
+                                {job['department']}
+                            </div>
                         </div>
                         <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
                             {job['location']}
+                        </div>
+                        <div style="font-size: 9px; color: #888; margin-bottom: 3px; font-style: italic;">
+                            {dept_info['fast_facts']}
                         </div>
                         <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
                             {job['details'][:80]}...
@@ -603,6 +744,7 @@ class IndianaPoliceJobsScraper:
                                style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
                                 View Full Posting →
                             </a>
+                            {dept_website_link}
                         </div>
                     </div>
                 </div>
@@ -724,12 +866,28 @@ class IndianaPoliceJobsScraper:
             """
             
             for job in jobs:
+                # Get department information
+                dept_info = self.get_department_info(job['department'])
                 closing_date_cell = f'<span class="closing-date">{job["closing_date"]}</span>' if job['closing_date'] else 'No closing date'
                 contact_cell = f'<div class="contact-info">{job["contact_info"]}</div>' if job['contact_info'] else 'No contact info'
                 
+                # Create department website link if available
+                dept_website_cell = ""
+                if dept_info['website']:
+                    dept_website_cell = f'<br><a href="{dept_info["website"]}" target="_blank" style="color: #28a745; text-decoration: underline;">🌐 Department Website</a>'
+                
                 html_content += f"""
                 <tr>
-                    <td><strong>{job['department']}</strong></td>
+                    <td>
+                        <div style="display: flex; align-items: center;">
+                            <span style="font-size: 20px; margin-right: 8px;">{dept_info['badge']}</span>
+                            <div>
+                                <strong>{job['department']}</strong>
+                                <br><small style="color: #666; font-style: italic;">{dept_info['fast_facts']}</small>
+                                {dept_website_cell}
+                            </div>
+                        </div>
+                    </td>
                     <td>{job['location']}</td>
                     <td class="job-details">{job['details']}</td>
                     <td>{closing_date_cell}</td>
@@ -754,10 +912,17 @@ class IndianaPoliceJobsScraper:
     def save_data_to_csv(self, county_jobs, filename='indiana_police_jobs.csv'):
         """Save job data to CSV file"""
         all_jobs = []
+        seen_jobs = set()  # Track unique job identifiers
+        
         for county, jobs in county_jobs.items():
             for job in jobs:
-                job['county'] = county
-                all_jobs.append(job)
+                # Create unique identifier for deduplication
+                job_id = f"{job['department']}_{job['location']}_{job['anchor_id']}"
+                
+                if job_id not in seen_jobs:
+                    seen_jobs.add(job_id)
+                    job['county'] = county
+                    all_jobs.append(job)
         
         with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
             fieldnames = ['department', 'location', 'details', 'full_description', 'closing_date', 'contact_info', 'anchor_id', 'ilea_link', 'county', 'date_posted']
