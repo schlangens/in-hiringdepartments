@@ -4,7 +4,7 @@ A Python application that scrapes law enforcement job opportunities from the Ind
 
 ## 🌐 Live Demo
 
-**View the interactive map online:** [Indiana Police Jobs Map](https://[YOUR_USERNAME].github.io/PoliceMaps/)
+**View the interactive map online:** [Indiana Police Jobs Map](https://schlangens.github.io/in-hiringdepartments/)
 
 ## Features
 
@@ -25,8 +25,8 @@ A Python application that scrapes law enforcement job opportunities from the Ind
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/[YOUR_USERNAME]/PoliceMaps.git
-   cd PoliceMaps
+   git clone https://github.com/schlangens/in-hiringdepartments.git
+   cd in-hiringdepartments
    ```
 
 2. **Install dependencies:**

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indiana Police Jobs Map</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+        .btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #007bff;
+        }
+        .feature h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+        .loading {
+            display: none;
+            margin-top: 20px;
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗺️ Indiana Police Jobs Map</h1>
+        <p>Interactive map showing law enforcement job opportunities across Indiana counties. 
+           Real-time data from the Indiana Law Enforcement Academy (ILEA) bulletin board.</p>
+        
+        <a href="indiana_police_jobs_map.html" class="btn" onclick="showLoading()">
+            🚀 Launch Interactive Map
+        </a>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Loading interactive map...</p>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>📍 Real-time Data</h3>
+                <p>Automatically scrapes current job postings from the ILEA website</p>
+            </div>
+            <div class="feature">
+                <h3>🔍 Searchable Jobs</h3>
+                <p>Filter jobs by department or county with the interactive side panel</p>
+            </div>
+            <div class="feature">
+                <h3>🔗 Direct Links</h3>
+                <p>Click through to original job postings on the ILEA bulletin board</p>
+            </div>
+            <div class="feature">
+                <h3>📊 County Coverage</h3>
+                <p>Complete coverage of all 92 Indiana counties with job opportunities</p>
+            </div>
+        </div>
+        
+        <p style="margin-top: 30px; font-size: 0.9em; opacity: 0.8;">
+            Data source: <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/" 
+                           style="color: #007bff;">ILEA Job Opportunities</a>
+        </p>
+    </div>
+
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+        
+        // Auto-redirect after 3 seconds if user doesn't click
+        setTimeout(function() {
+            if (!document.getElementById('loading').style.display === 'block') {
+                window.location.href = 'indiana_police_jobs_map.html';
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
