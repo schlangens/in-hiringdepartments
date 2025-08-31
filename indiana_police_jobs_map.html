@@ -1,0 +1,2296 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_28a46c4052938fecd77ecf917b54d30b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; 
+                    top: 10px; right: 10px; width: 350px; height: 90vh; 
+                    background-color: white; border:2px solid #007bff; z-index:9999; 
+                    font-size:12px; padding: 10px; overflow-y: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <div style="background-color: #007bff; color: white; padding: 8px; margin: -10px -10px 10px -10px;">
+                <h3 style="margin: 0; font-size: 16px;">Indiana Police Jobs (46 total)</h3>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <input type="text" id="jobSearch" placeholder="Search jobs..." 
+                       style="width: 100%; padding: 5px; border: 1px solid #ddd; border-radius: 3px;"
+                       onkeyup="filterJobs()">
+            </div>
+            <div id="jobList">
+        
+                <div class="county-section" data-county="Boone">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Boone County
+                    </div>
+                
+                <div class="job-item" data-department="boone county sheriff’s office" data-county="boone">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Boone County Sheriff’s Office
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Boone County
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Boone County Sheriff’s Office is currently accepting pre-applications for Co...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#BooneCo" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Cass">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Cass County
+                    </div>
+                
+                <div class="job-item" data-department="logansport police department" data-county="cass">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Logansport Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Logansport Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Logansport Police Department is accepting applications forProbationary Polic...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Logansport" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="DeKalb">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        DeKalb County
+                    </div>
+                
+                <div class="job-item" data-department="waterloo marshal’s department" data-county="dekalb">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Waterloo Marshal’s Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Waterloo Marshal
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Waterloo Marshals Department is now accepting applications for the position ...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Waterloo" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Delaware">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Delaware County
+                    </div>
+                
+                <div class="job-item" data-department="eaton police department" data-county="delaware">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Eaton Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Eaton Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Eaton Police Department is accepting applications for the position ofReserve...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Eaton" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Elkhart">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Elkhart County
+                    </div>
+                
+                <div class="job-item" data-department="elkhart county sheriff’s office" data-county="elkhart">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Elkhart County Sheriff’s Office
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Elkhart County
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Elkhart County Sheriff’s Office would like to post a job opening for aCorrec...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#ElkhartCo" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="job-item" data-department="elkhart police department" data-county="elkhart">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Elkhart Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Elkhart Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Elkhart Police Department is accepting applications for the position of full...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Elkhart" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="job-item" data-department="elkhart police department" data-county="elkhart">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Elkhart Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Elkhart Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Elkhart Police Department is accepting applications for the position of full...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Elkhart" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Fayette">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Fayette County
+                    </div>
+                
+                <div class="job-item" data-department="lafayette police department" data-county="fayette">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Lafayette Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Lafayette Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Westville Police Department is now accepting applications for a full timeDep...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Lafayette" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="job-item" data-department="west lafayette police department" data-county="fayette">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            West Lafayette Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Lafayette Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Make your move and join the West Lafayette Police Department today!See for yours...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#WestLafayette" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Fulton">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Fulton County
+                    </div>
+                
+                <div class="job-item" data-department="rochester police department" data-county="fulton">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Rochester Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Rochester Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Rochester Police Department is currently accepting applications for the posi...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Rochester" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Gibson">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Gibson County
+                    </div>
+                
+                <div class="job-item" data-department="princeton police department" data-county="gibson">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Princeton Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Princeton Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Princeton PD is accepting applications for the position ofPatrol Officer.We have...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Princeton" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Grant">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Grant County
+                    </div>
+                
+                <div class="job-item" data-department="grant county sheriff’s office" data-county="grant">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Grant County Sheriff’s Office
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Grant County
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Grant County Sheriff’s Office is currently accepting applications forFull-ti...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#GrantCo" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="job-item" data-department="sweetser police department" data-county="grant">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Sweetser Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Sweetser Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Department: Sweetser Police DepartmentPosition:Town MarshalApplication Deadline:...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Sweetser" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Hamilton">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Hamilton County
+                    </div>
+                
+                <div class="job-item" data-department="carmel police department" data-county="hamilton">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Carmel Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Carmel Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Carmel PD is accepting applications throughSeptember 23, 2025.The link below wil...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Carmel" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Hancock">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Hancock County
+                    </div>
+                
+                <div class="job-item" data-department="fortville police department" data-county="hancock">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Fortville Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Fortville Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Fortville Police Department is now accepting applications for the position ofPat...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Fortville" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="job-item" data-department="greenfield police department" data-county="hancock">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Greenfield Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Greenfield Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Greenfield Police Department is accepting applications for the position ofPo...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Greenfield" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="job-item" data-department="greenfield-central schools police department" data-county="hancock">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Greenfield-Central Schools Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Schools Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Title of Position:  Chief of PolicePrimary Job Function: Lead police department ...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#GreenfieldSchools" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="job-item" data-department="mccordsville police department" data-county="hancock">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            McCordsville Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            McCordsville Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            NOW HIRING – JOIN THE McCORDSVILLE POLICE DEPARTMENTAre you ready to serve a fas...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#McCordsville" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Jay">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Jay County
+                    </div>
+                
+                <div class="job-item" data-department="dunkirk police department" data-county="jay">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Dunkirk Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Dunkirk Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The City of Dunkirk Police Department is currently accepting Applications for th...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Dunkirk" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="job-item" data-department="portland police department" data-county="jay">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Portland Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Portland Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Portland Police Department is now hiring! Requirements for this position are: Wh...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Portland" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Kosciusko">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Kosciusko County
+                    </div>
+                
+                <div class="job-item" data-department="warsaw police department" data-county="kosciusko">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Warsaw Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Warsaw Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Warsaw Police Department is currently accepting applications forprobationary...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Warsaw" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="LaPorte">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        LaPorte County
+                    </div>
+                
+                <div class="job-item" data-department="kingsford heights police department" data-county="laporte">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Kingsford Heights Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Heights Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Kingsford Heights Police Department (KHPD) is now hiring for the positions ofChi...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#KingsfordHeights" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="job-item" data-department="westville police department" data-county="laporte">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Westville Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Westville Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Westville Police Department is now accepting applications for a full timeDep...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Westville" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Lake">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Lake County
+                    </div>
+                
+                <div class="job-item" data-department="dyer police department" data-county="lake">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Dyer Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Dyer Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Dyer Police Department Is Hiring Certified Police OfficersStarting SalarySee Fly...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Dyer2" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Lawrence">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Lawrence County
+                    </div>
+                
+                <div class="job-item" data-department="lawrence police department" data-county="lawrence">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Lawrence Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Lawrence Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The City of Lawrence Police Department is currently accepting interest forms for...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Lawrence" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Madison">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Madison County
+                    </div>
+                
+                <div class="job-item" data-department="alexandria police department" data-county="madison">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Alexandria Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Alexandria Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Alexandria Police Department is accepting applications for the position ofPo...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Alexandria" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="job-item" data-department="anderson police department" data-county="madison">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Anderson Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Anderson Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Anderson Police Department is currently accepting applications forLateral Tr...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Anderson" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="job-item" data-department="town of frankton" data-county="madison">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Town of Frankton
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Town of Frankton
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Town of Frankton is Seeking aFull Time School Resource Officer / Police Offi...
+                        </div>
+                        <br><span style='color: red; font-size: 10px;'>Closes: August 11, 2023</span>
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Frankton" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Marion">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Marion County
+                    </div>
+                
+                <div class="job-item" data-department="cumberland metropolitan police department" data-county="marion">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Cumberland Metropolitan Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Metropolitan Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Cumberland Metropolitan Police Department Hiring Police Officers!The Town of Cum...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Cumberland" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="job-item" data-department="homecroft police department" data-county="marion">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Homecroft Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Homecroft Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Serve with Purpose. Lead with Integrity. Protect with Pride.The Homecroft Police...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Homecroft" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="job-item" data-department="indianapolis public schools police department" data-county="marion">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Indianapolis Public Schools Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Schools Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Indianapolis Public School Police Department is accepting applications for t...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#IPS" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Monroe">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Monroe County
+                    </div>
+                
+                <div class="job-item" data-department="monroe county sheriff’s office" data-county="monroe">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Monroe County Sheriff’s Office
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Monroe County
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Monroe County Sheriff's Office is hiring.Starting pay for all recruits $72,7...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#MonroeCo" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Morgan">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Morgan County
+                    </div>
+                
+                <div class="job-item" data-department="monrovia police department" data-county="morgan">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Monrovia Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Monrovia Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Serve with Purpose. Lead with Integrity. Protect with Pride.The Monrovia Police ...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Monrovia" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Perry">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Perry County
+                    </div>
+                
+                <div class="job-item" data-department="perry township schools police department" data-county="perry">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Perry Township Schools Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Schools Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Police OfficerPosition PurposeUnder direct supervision of the Chief of Police to...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#PerryTownshipSchools" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Porter">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Porter County
+                    </div>
+                
+                <div class="job-item" data-department="valparaiso university police department" data-county="porter">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Valparaiso University Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            University Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Valparaiso University Police Department is now accepting applications for th...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#ValparaisoU" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Posey">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Posey County
+                    </div>
+                
+                <div class="job-item" data-department="mount vernon police department" data-county="posey">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Mount Vernon Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Vernon Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Mount Vernon Police Department is offering a $10,000 hiring incentive for La...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#MountVernon" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Saint Joseph">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Saint Joseph County
+                    </div>
+                
+                <div class="job-item" data-department="roseland police department" data-county="saint joseph">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Roseland Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Roseland Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Roseland PolicePatrol OfficerPolice · Roseland, IndianaThe Roseland Police Patro...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Roseland" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="job-item" data-department="south bend international airport" data-county="saint joseph">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            South Bend International Airport
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Bend International Airport
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The South Bend International Airport is accepting resumes for consideration in f...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#SBIA" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Scott">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Scott County
+                    </div>
+                
+                <div class="job-item" data-department="scottsburg police department" data-county="scott">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Scottsburg Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Scottsburg Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Looking for a meaningful and rewarding career by helping others and keeping our ...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Scottsburg" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Shelby">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Shelby County
+                    </div>
+                
+                <div class="job-item" data-department="shelbyville police department" data-county="shelby">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Shelbyville Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Shelbyville Police Department
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Shelbyville Police Department is a CALEA and ILEAC accredited law enforcemen...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Shelbyville" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Steuben">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Steuben County
+                    </div>
+                
+                <div class="job-item" data-department="steuben county sheriff’s office" data-county="steuben">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Steuben County Sheriff’s Office
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Steuben County
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Steuben County Sheriff’s Office is accepting applications.POSITION:Deputy Sherif...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#SteubenCo" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Tippecanoe">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Tippecanoe County
+                    </div>
+                
+                <div class="job-item" data-department="tippecanoe county sheriff's office" data-county="tippecanoe">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Tippecanoe County Sheriff's Office
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Tippecanoe County
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Tippecanoe County Sheriff's Office is continually accepting pre-applications...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#TippecanoeCo" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Warren">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Warren County
+                    </div>
+                
+                <div class="job-item" data-department="metropolitan school district of warren township" data-county="warren">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Metropolitan School District of Warren Township
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Warren Township
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            The Metropolitan School District of Warren Township is now accepting application...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Warren" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Wayne">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Wayne County
+                    </div>
+                
+                <div class="job-item" data-department="purdue university-fort wayne" data-county="wayne">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Purdue University-Fort Wayne
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Purdue University
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Purdue University-Fort Wayne is currently accepting applications for aPolice Off...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#PUFW" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="job-item" data-department="wayne county sheriff’s department" data-county="wayne">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Wayne County Sheriff’s Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Wayne County
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Additionally, we areconducting an ongoinghiring process for Corrections Officer....
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#WayneCo" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="county-section" data-county="Whitley">
+                    <div style="background-color: #f8f9fa; padding: 5px; margin: 5px 0; border-left: 3px solid #007bff; font-weight: bold; font-size: 11px;">
+                        Whitley County
+                    </div>
+                
+                <div class="job-item" data-department="whitley county sheriff’s department" data-county="whitley">
+                    <div style="border: 1px solid #ddd; margin: 3px 0; padding: 8px; border-radius: 3px; background-color: #fafafa;">
+                        <div style="font-weight: bold; font-size: 11px; color: #333; margin-bottom: 3px;">
+                            Whitley County Sheriff’s Department
+                        </div>
+                        <div style="font-size: 10px; color: #666; margin-bottom: 3px;">
+                            Whitley County
+                        </div>
+                        <div style="font-size: 10px; color: #555; margin-bottom: 3px; line-height: 1.3;">
+                            Whitley County Sheriff's Department has an opening forfull time dispatcher.Appli...
+                        </div>
+                        
+                        <div style="margin-top: 5px;">
+                            <a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#WhitleyCo" target="_blank" 
+                               style="color: #007bff; text-decoration: none; font-size: 10px; font-weight: bold;">
+                                View Full Posting →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+            </div>
+        </div>
+        
+        <script>
+        function filterJobs() {
+            var input = document.getElementById('jobSearch');
+            var filter = input.value.toLowerCase();
+            var jobItems = document.getElementsByClassName('job-item');
+            
+            for (var i = 0; i < jobItems.length; i++) {
+                var jobItem = jobItems[i];
+                var department = jobItem.getAttribute('data-department');
+                var county = jobItem.getAttribute('data-county');
+                
+                if (department.includes(filter) || county.includes(filter)) {
+                    jobItem.style.display = 'block';
+                } else {
+                    jobItem.style.display = 'none';
+                }
+            }
+        }
+        </script>
+        
+    
+        <div style="position: fixed; 
+                    bottom: 50px; left: 50px; width: 200px; height: 120px; 
+                    background-color: white; border:2px solid grey; z-index:9999; 
+                    font-size:14px; padding: 10px">
+        <p><strong>Job Opportunities</strong></p>
+        <p><span style="color:#ffeb3b;">●</span> 1 job</p>
+        <p><span style="color:#ff9800;">●</span> 2 jobs</p>
+        <p><span style="color:#ff5722;">●</span> 3 jobs</p>
+        <p><span style="color:#f44336;">●</span> 4+ jobs</p>
+        </div>
+        
+    
+            <div class="folium-map" id="map_28a46c4052938fecd77ecf917b54d30b" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_28a46c4052938fecd77ecf917b54d30b = L.map(
+                "map_28a46c4052938fecd77ecf917b54d30b",
+                {
+                    center: [39.8494, -86.2583],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 7,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_411363b01be72de0ad7c25736591e508 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_411363b01be72de0ad7c25736591e508.addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+            var circle_marker_d761c1eb42ada51340e2727e41fcb918 = L.circleMarker(
+                [41.5467, -86.7222],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff9800", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_2bc5fe188d630941aec93ec8c48af839 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_200dfe92bfa86457a909b27376314b18 = $(`<div id="html_200dfe92bfa86457a909b27376314b18" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>LaPorte County</h3>                     <p><strong>Job Opportunities: 2</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Kingsford Heights Police Department</strong><br>                         <em>Heights Police Department</em><br>                         Kingsford Heights Police Department (KHPD) is now hiring for the positions ofChief Marshaland/orDepu...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#KingsfordHeights" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                                          <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Westville Police Department</strong><br>                         <em>Westville Police Department</em><br>                         The Westville Police Department is now accepting applications for a full timeDeputy Marshalposition....<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Westville" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_2bc5fe188d630941aec93ec8c48af839.setContent(html_200dfe92bfa86457a909b27376314b18);
+            
+        
+
+        circle_marker_d761c1eb42ada51340e2727e41fcb918.bindPopup(popup_2bc5fe188d630941aec93ec8c48af839)
+        ;
+
+        
+    
+    
+            circle_marker_d761c1eb42ada51340e2727e41fcb918.bindTooltip(
+                `<div>
+                     LaPorte County: 2 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_656311f8178604155f63c5f90bc144ac = L.circleMarker(
+                [40.1611, -85.7194],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff5722", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_aae8a88548511902d3708c0712bee993 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_3a95e9665d9004ec6e30c82772fd881b = $(`<div id="html_3a95e9665d9004ec6e30c82772fd881b" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Madison County</h3>                     <p><strong>Job Opportunities: 3</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Alexandria Police Department</strong><br>                         <em>Alexandria Police Department</em><br>                         The Alexandria Police Department is accepting applications for the position ofPolice Officer.Lateral...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Alexandria" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                                          <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Anderson Police Department</strong><br>                         <em>Anderson Police Department</em><br>                         The Anderson Police Department is currently accepting applications forLateral Transfers.All Lateral ...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Anderson" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                                          <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Town of Frankton</strong><br>                         <em>Town of Frankton</em><br>                         The Town of Frankton is Seeking aFull Time School Resource Officer / Police Officer* Applicant must ...<br>                         <small>Posted: 2025-08-31</small>                         <br><small style="color: red;">Closing: August 11, 2023</small>                         <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Frankton" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_aae8a88548511902d3708c0712bee993.setContent(html_3a95e9665d9004ec6e30c82772fd881b);
+            
+        
+
+        circle_marker_656311f8178604155f63c5f90bc144ac.bindPopup(popup_aae8a88548511902d3708c0712bee993)
+        ;
+
+        
+    
+    
+            circle_marker_656311f8178604155f63c5f90bc144ac.bindTooltip(
+                `<div>
+                     Madison County: 3 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_04b9e55b572a401435833932cdcaac6e = L.circleMarker(
+                [41.6181, -86.2903],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff9800", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_d58d6cfcf614dff33d43de5b7a91b0b0 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_a8f8f4dd55c3ddcae9517c8bcd3c32aa = $(`<div id="html_a8f8f4dd55c3ddcae9517c8bcd3c32aa" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Saint Joseph County</h3>                     <p><strong>Job Opportunities: 2</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Roseland Police Department</strong><br>                         <em>Roseland Police Department</em><br>                         Roseland PolicePatrol OfficerPolice · Roseland, IndianaThe Roseland Police Patrol Officer performs v...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Roseland" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                                          <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>South Bend International Airport</strong><br>                         <em>Bend International Airport</em><br>                         The South Bend International Airport is accepting resumes for consideration in filling openings for ...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#SBIA" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_d58d6cfcf614dff33d43de5b7a91b0b0.setContent(html_a8f8f4dd55c3ddcae9517c8bcd3c32aa);
+            
+        
+
+        circle_marker_04b9e55b572a401435833932cdcaac6e.bindPopup(popup_d58d6cfcf614dff33d43de5b7a91b0b0)
+        ;
+
+        
+    
+    
+            circle_marker_04b9e55b572a401435833932cdcaac6e.bindTooltip(
+                `<div>
+                     Saint Joseph County: 2 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_856164f73da42b0d144d893c049286e1 = L.circleMarker(
+                [41.6431, -85.0],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_c71bdd71938f7f5048b7e9880bac66db = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_05bb9a621f9ec9142eae24fb23795335 = $(`<div id="html_05bb9a621f9ec9142eae24fb23795335" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Steuben County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Steuben County Sheriff’s Office</strong><br>                         <em>Steuben County</em><br>                         Steuben County Sheriff’s Office is accepting applications.POSITION:Deputy Sheriff/Road PatrolJOB CAT...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#SteubenCo" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_c71bdd71938f7f5048b7e9880bac66db.setContent(html_05bb9a621f9ec9142eae24fb23795335);
+            
+        
+
+        circle_marker_856164f73da42b0d144d893c049286e1.bindPopup(popup_c71bdd71938f7f5048b7e9880bac66db)
+        ;
+
+        
+    
+    
+            circle_marker_856164f73da42b0d144d893c049286e1.bindTooltip(
+                `<div>
+                     Steuben County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_57e08005c0511d4ef2d494c213260c8c = L.circleMarker(
+                [39.4819, -86.4469],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_efd00b39ae24c32f9de5cfff530e291d = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_5a8ccd3e647a7705043202cc96fb4f0f = $(`<div id="html_5a8ccd3e647a7705043202cc96fb4f0f" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Morgan County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Monrovia Police Department</strong><br>                         <em>Monrovia Police Department</em><br>                         Serve with Purpose. Lead with Integrity. Protect with Pride.The Monrovia Police Department (MNPD) is...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Monrovia" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_efd00b39ae24c32f9de5cfff530e291d.setContent(html_5a8ccd3e647a7705043202cc96fb4f0f);
+            
+        
+
+        circle_marker_57e08005c0511d4ef2d494c213260c8c.bindPopup(popup_efd00b39ae24c32f9de5cfff530e291d)
+        ;
+
+        
+    
+    
+            circle_marker_57e08005c0511d4ef2d494c213260c8c.bindTooltip(
+                `<div>
+                     Morgan County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d35945bc8108d602ced3df402410cac0 = L.circleMarker(
+                [40.2278, -85.3972],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_57ff938bdb4f69ec3933aa529ead0c61 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_a5b80e84d4c4e1deb2ad78f5c034f21a = $(`<div id="html_a5b80e84d4c4e1deb2ad78f5c034f21a" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Delaware County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Eaton Police Department</strong><br>                         <em>Eaton Police Department</em><br>                         The Eaton Police Department is accepting applications for the position ofReserve OfficerNo Certifica...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Eaton" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_57ff938bdb4f69ec3933aa529ead0c61.setContent(html_a5b80e84d4c4e1deb2ad78f5c034f21a);
+            
+        
+
+        circle_marker_d35945bc8108d602ced3df402410cac0.bindPopup(popup_57ff938bdb4f69ec3933aa529ead0c61)
+        ;
+
+        
+    
+    
+            circle_marker_d35945bc8108d602ced3df402410cac0.bindTooltip(
+                `<div>
+                     Delaware County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1b60831d1e7dc92b66157ccd8ecfa0d3 = L.circleMarker(
+                [38.0792, -86.6375],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_c9203d21797f956b0d4ffacbcae4111e = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_abc57324a8d67b1b8fded3b4c59df8fd = $(`<div id="html_abc57324a8d67b1b8fded3b4c59df8fd" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Perry County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Perry Township Schools Police Department</strong><br>                         <em>Schools Police Department</em><br>                         Police OfficerPosition PurposeUnder direct supervision of the Chief of Police to patrol school build...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#PerryTownshipSchools" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_c9203d21797f956b0d4ffacbcae4111e.setContent(html_abc57324a8d67b1b8fded3b4c59df8fd);
+            
+        
+
+        circle_marker_1b60831d1e7dc92b66157ccd8ecfa0d3.bindPopup(popup_c9203d21797f956b0d4ffacbcae4111e)
+        ;
+
+        
+    
+    
+            circle_marker_1b60831d1e7dc92b66157ccd8ecfa0d3.bindTooltip(
+                `<div>
+                     Perry County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_50f1864a513a08918a6b69c9433a22e3 = L.circleMarker(
+                [39.8236, -85.7736],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f44336", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_dfed9113f45bcdc0e6b2aa78b445df7b = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_80253ca3213b1fcb9ca7fa293f22f1d3 = $(`<div id="html_80253ca3213b1fcb9ca7fa293f22f1d3" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Hancock County</h3>                     <p><strong>Job Opportunities: 4</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>McCordsville Police Department</strong><br>                         <em>McCordsville Police Department</em><br>                         NOW HIRING – JOIN THE McCORDSVILLE POLICE DEPARTMENTAre you ready to serve a fast-growing, community...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#McCordsville" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                                          <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Greenfield Police Department</strong><br>                         <em>Greenfield Police Department</em><br>                         The Greenfield Police Department is accepting applications for the position ofPolice Officer.Lateral...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Greenfield" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                                          <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Greenfield-Central Schools Police Department</strong><br>                         <em>Schools Police Department</em><br>                         Title of Position:  Chief of PolicePrimary Job Function: Lead police department by fostering safe le...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#GreenfieldSchools" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                                          <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Fortville Police Department</strong><br>                         <em>Fortville Police Department</em><br>                         Fortville Police Department is now accepting applications for the position ofPatrol Officer.This pro...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Fortville" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_dfed9113f45bcdc0e6b2aa78b445df7b.setContent(html_80253ca3213b1fcb9ca7fa293f22f1d3);
+            
+        
+
+        circle_marker_50f1864a513a08918a6b69c9433a22e3.bindPopup(popup_dfed9113f45bcdc0e6b2aa78b445df7b)
+        ;
+
+        
+    
+    
+            circle_marker_50f1864a513a08918a6b69c9433a22e3.bindTooltip(
+                `<div>
+                     Hancock County: 4 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_89c4f4136f82924de7e442bb5754a155 = L.circleMarker(
+                [40.0736, -86.0514],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_7d4bf44657436c255c8b7be9aa4e5cb3 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_b18ff16418d1bfdabac5e3f73698b432 = $(`<div id="html_b18ff16418d1bfdabac5e3f73698b432" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Hamilton County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Carmel Police Department</strong><br>                         <em>Carmel Police Department</em><br>                         Carmel PD is accepting applications throughSeptember 23, 2025.The link below will take you to the ap...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Carmel" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_7d4bf44657436c255c8b7be9aa4e5cb3.setContent(html_b18ff16418d1bfdabac5e3f73698b432);
+            
+        
+
+        circle_marker_89c4f4136f82924de7e442bb5754a155.bindPopup(popup_7d4bf44657436c255c8b7be9aa4e5cb3)
+        ;
+
+        
+    
+    
+            circle_marker_89c4f4136f82924de7e442bb5754a155.bindTooltip(
+                `<div>
+                     Hamilton County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f1f3c726e8b72014cb8ae8856e4ec9d8 = L.circleMarker(
+                [39.5208, -85.7917],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_51dc2b9d2a0585e352e57082690913db = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_b19ada5c37f5d7390f26353a34368be0 = $(`<div id="html_b19ada5c37f5d7390f26353a34368be0" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Shelby County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Shelbyville Police Department</strong><br>                         <em>Shelbyville Police Department</em><br>                         The Shelbyville Police Department is a CALEA and ILEAC accredited law enforcement agencyCity of Shel...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Shelbyville" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_51dc2b9d2a0585e352e57082690913db.setContent(html_b19ada5c37f5d7390f26353a34368be0);
+            
+        
+
+        circle_marker_f1f3c726e8b72014cb8ae8856e4ec9d8.bindPopup(popup_51dc2b9d2a0585e352e57082690913db)
+        ;
+
+        
+    
+    
+            circle_marker_f1f3c726e8b72014cb8ae8856e4ec9d8.bindTooltip(
+                `<div>
+                     Shelby County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b23663309f8feaf0af310b63c5fc5ff6 = L.circleMarker(
+                [38.6833, -85.7458],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_fecb140e55aa6d12623cc1c62473e27e = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_8b7ecb82faf82ea6e8d91c4974062381 = $(`<div id="html_8b7ecb82faf82ea6e8d91c4974062381" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Scott County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Scottsburg Police Department</strong><br>                         <em>Scottsburg Police Department</em><br>                         Looking for a meaningful and rewarding career by helping others and keeping our community safe? Then...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Scottsburg" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_fecb140e55aa6d12623cc1c62473e27e.setContent(html_8b7ecb82faf82ea6e8d91c4974062381);
+            
+        
+
+        circle_marker_b23663309f8feaf0af310b63c5fc5ff6.bindPopup(popup_fecb140e55aa6d12623cc1c62473e27e)
+        ;
+
+        
+    
+    
+            circle_marker_b23663309f8feaf0af310b63c5fc5ff6.bindTooltip(
+                `<div>
+                     Scott County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8db1f74b74665223b990c7a32f3c6fdf = L.circleMarker(
+                [40.5153, -85.6542],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff9800", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_6558e5665939edac7334354cdf6582e7 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_8a98f8bbef42cd90009a286f6aea6522 = $(`<div id="html_8a98f8bbef42cd90009a286f6aea6522" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Grant County</h3>                     <p><strong>Job Opportunities: 2</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Sweetser Police Department</strong><br>                         <em>Sweetser Police Department</em><br>                         Department: Sweetser Police DepartmentPosition:Town MarshalApplication Deadline:Open until filledCon...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Sweetser" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                                          <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Grant County Sheriff’s Office</strong><br>                         <em>Grant County</em><br>                         The Grant County Sheriff’s Office is currently accepting applications forFull-time & Part-time Corre...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#GrantCo" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_6558e5665939edac7334354cdf6582e7.setContent(html_8a98f8bbef42cd90009a286f6aea6522);
+            
+        
+
+        circle_marker_8db1f74b74665223b990c7a32f3c6fdf.bindPopup(popup_6558e5665939edac7334354cdf6582e7)
+        ;
+
+        
+    
+    
+            circle_marker_8db1f74b74665223b990c7a32f3c6fdf.bindTooltip(
+                `<div>
+                     Grant County: 2 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5076f31fbe2410343dd15f2400fce4b9 = L.circleMarker(
+                [39.6417, -85.1792],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff9800", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_05b44095cbf744556d4603e218dc9d0e = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_8c632a1502650d9c97a81509079c5652 = $(`<div id="html_8c632a1502650d9c97a81509079c5652" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Fayette County</h3>                     <p><strong>Job Opportunities: 2</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Lafayette Police Department</strong><br>                         <em>Lafayette Police Department</em><br>                         The Westville Police Department is now accepting applications for a full timeDeputy Marshalposition....<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Lafayette" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                                          <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>West Lafayette Police Department</strong><br>                         <em>Lafayette Police Department</em><br>                         Make your move and join the West Lafayette Police Department today!See for yourself why you need to ...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#WestLafayette" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_05b44095cbf744556d4603e218dc9d0e.setContent(html_8c632a1502650d9c97a81509079c5652);
+            
+        
+
+        circle_marker_5076f31fbe2410343dd15f2400fce4b9.bindPopup(popup_05b44095cbf744556d4603e218dc9d0e)
+        ;
+
+        
+    
+    
+            circle_marker_5076f31fbe2410343dd15f2400fce4b9.bindTooltip(
+                `<div>
+                     Fayette County: 2 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ba2e63cf8bfd4a387324ee27b3d9e8d5 = L.circleMarker(
+                [41.3972, -85.0],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_b11c0bb87674d5be51a057f3b885fa7c = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_aefcf1d65e02f4c98eb687d26262f716 = $(`<div id="html_aefcf1d65e02f4c98eb687d26262f716" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>DeKalb County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Waterloo Marshal’s Department</strong><br>                         <em>Waterloo Marshal</em><br>                         The Waterloo Marshals Department is now accepting applications for the position ofPatrol Officer.Thi...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Waterloo" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_b11c0bb87674d5be51a057f3b885fa7c.setContent(html_aefcf1d65e02f4c98eb687d26262f716);
+            
+        
+
+        circle_marker_ba2e63cf8bfd4a387324ee27b3d9e8d5.bindPopup(popup_b11c0bb87674d5be51a057f3b885fa7c)
+        ;
+
+        
+    
+    
+            circle_marker_ba2e63cf8bfd4a387324ee27b3d9e8d5.bindTooltip(
+                `<div>
+                     DeKalb County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fb0a7944cb4417224b04270dc526b84c = L.circleMarker(
+                [41.0472, -86.2639],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_14bbafdd6c01b0bcbadbef211bec7bff = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_306db30b180e62887af679a8db65b4a6 = $(`<div id="html_306db30b180e62887af679a8db65b4a6" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Fulton County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Rochester Police Department</strong><br>                         <em>Rochester Police Department</em><br>                         The Rochester Police Department is currently accepting applications for the position offull-time Pol...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Rochester" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_14bbafdd6c01b0bcbadbef211bec7bff.setContent(html_306db30b180e62887af679a8db65b4a6);
+            
+        
+
+        circle_marker_fb0a7944cb4417224b04270dc526b84c.bindPopup(popup_14bbafdd6c01b0bcbadbef211bec7bff)
+        ;
+
+        
+    
+    
+            circle_marker_fb0a7944cb4417224b04270dc526b84c.bindTooltip(
+                `<div>
+                     Fulton County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9e5c14cf6ae1b274cff077d9dc4f6fc3 = L.circleMarker(
+                [41.5972, -85.8583],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff5722", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_57ea9c7bef6cc4ab2335fa64cba07400 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_7bbfddb217557f53b97d05b3ac27a289 = $(`<div id="html_7bbfddb217557f53b97d05b3ac27a289" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Elkhart County</h3>                     <p><strong>Job Opportunities: 3</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Elkhart Police Department</strong><br>                         <em>Elkhart Police Department</em><br>                         The Elkhart Police Department is accepting applications for the position of full-time Police Officer...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Elkhart" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                                          <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Elkhart Police Department</strong><br>                         <em>Elkhart Police Department</em><br>                         The Elkhart Police Department is accepting applications for the position of full-time Police Officer...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Elkhart" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                                          <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Elkhart County Sheriff’s Office</strong><br>                         <em>Elkhart County</em><br>                         The Elkhart County Sheriff’s Office would like to post a job opening for aCorrections Training Serge...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#ElkhartCo" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_57ea9c7bef6cc4ab2335fa64cba07400.setContent(html_7bbfddb217557f53b97d05b3ac27a289);
+            
+        
+
+        circle_marker_9e5c14cf6ae1b274cff077d9dc4f6fc3.bindPopup(popup_57ea9c7bef6cc4ab2335fa64cba07400)
+        ;
+
+        
+    
+    
+            circle_marker_9e5c14cf6ae1b274cff077d9dc4f6fc3.bindTooltip(
+                `<div>
+                     Elkhart County: 3 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f8e3208440230449edbfeef841ff200a = L.circleMarker(
+                [39.8647, -85.0097],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff9800", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_4070497878b5896bb54be76940b815ad = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_9f3df6d5592a759d39eae5015661cdd1 = $(`<div id="html_9f3df6d5592a759d39eae5015661cdd1" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Wayne County</h3>                     <p><strong>Job Opportunities: 2</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Purdue University-Fort Wayne</strong><br>                         <em>Purdue University</em><br>                         Purdue University-Fort Wayne is currently accepting applications for aPolice Officer on our campus.T...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#PUFW" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                                          <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Wayne County Sheriff’s Department</strong><br>                         <em>Wayne County</em><br>                         Additionally, we areconducting an ongoinghiring process for Corrections Officer. Corrections Officer...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#WayneCo" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_4070497878b5896bb54be76940b815ad.setContent(html_9f3df6d5592a759d39eae5015661cdd1);
+            
+        
+
+        circle_marker_f8e3208440230449edbfeef841ff200a.bindPopup(popup_4070497878b5896bb54be76940b815ad)
+        ;
+
+        
+    
+    
+            circle_marker_f8e3208440230449edbfeef841ff200a.bindTooltip(
+                `<div>
+                     Wayne County: 2 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_23e56b3f70072144be840fe4b845b57a = L.circleMarker(
+                [39.7817, -86.1386],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff5722", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 16, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_8470d2fcaa9c9f744cd601484cddf512 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_262af9d7ed21126dbef711358ebdf4ee = $(`<div id="html_262af9d7ed21126dbef711358ebdf4ee" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Marion County</h3>                     <p><strong>Job Opportunities: 3</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Cumberland Metropolitan Police Department</strong><br>                         <em>Metropolitan Police Department</em><br>                         Cumberland Metropolitan Police Department Hiring Police Officers!The Town of Cumberland, Indiana is ...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Cumberland" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                                          <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Homecroft Police Department</strong><br>                         <em>Homecroft Police Department</em><br>                         Serve with Purpose. Lead with Integrity. Protect with Pride.The Homecroft Police Department (HPD) is...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Homecroft" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                                          <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Indianapolis Public Schools Police Department</strong><br>                         <em>Schools Police Department</em><br>                         The Indianapolis Public School Police Department is accepting applications for the position of full-...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#IPS" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_8470d2fcaa9c9f744cd601484cddf512.setContent(html_262af9d7ed21126dbef711358ebdf4ee);
+            
+        
+
+        circle_marker_23e56b3f70072144be840fe4b845b57a.bindPopup(popup_8470d2fcaa9c9f744cd601484cddf512)
+        ;
+
+        
+    
+    
+            circle_marker_23e56b3f70072144be840fe4b845b57a.bindTooltip(
+                `<div>
+                     Marion County: 3 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7559d07d6b6aa9cdbcf2cbdf4e89aa62 = L.circleMarker(
+                [38.8417, -86.4833],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_585bb424da6816ab9bb6d4fc2dc66993 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_25e5fa56922f3428292e787a0bdf5bcf = $(`<div id="html_25e5fa56922f3428292e787a0bdf5bcf" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Lawrence County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Lawrence Police Department</strong><br>                         <em>Lawrence Police Department</em><br>                         The City of Lawrence Police Department is currently accepting interest forms forMerit Police Officer...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Lawrence" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_585bb424da6816ab9bb6d4fc2dc66993.setContent(html_25e5fa56922f3428292e787a0bdf5bcf);
+            
+        
+
+        circle_marker_7559d07d6b6aa9cdbcf2cbdf4e89aa62.bindPopup(popup_585bb424da6816ab9bb6d4fc2dc66993)
+        ;
+
+        
+    
+    
+            circle_marker_7559d07d6b6aa9cdbcf2cbdf4e89aa62.bindTooltip(
+                `<div>
+                     Lawrence County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1765e01cbaacf5157276c6e3d7e1ff2d = L.circleMarker(
+                [41.4167, -87.3833],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_b0d8490a8d04a55af2adda09088f72f6 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_bc6706c1bd3290af6ffd3d9a4eacd6cf = $(`<div id="html_bc6706c1bd3290af6ffd3d9a4eacd6cf" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Lake County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Dyer Police Department</strong><br>                         <em>Dyer Police Department</em><br>                         Dyer Police Department Is Hiring Certified Police OfficersStarting SalarySee Flyer.EMERGENCY HIRE Al...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Dyer2" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_b0d8490a8d04a55af2adda09088f72f6.setContent(html_bc6706c1bd3290af6ffd3d9a4eacd6cf);
+            
+        
+
+        circle_marker_1765e01cbaacf5157276c6e3d7e1ff2d.bindPopup(popup_b0d8490a8d04a55af2adda09088f72f6)
+        ;
+
+        
+    
+    
+            circle_marker_1765e01cbaacf5157276c6e3d7e1ff2d.bindTooltip(
+                `<div>
+                     Lake County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9c8df1f0a45706364985a1dc33c5b087 = L.circleMarker(
+                [40.4375, -85.0042],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff9800", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_dde9f74757f31008ce4174a7ffa7d766 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_7d69d628e3a11f4b4815783f498513f7 = $(`<div id="html_7d69d628e3a11f4b4815783f498513f7" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Jay County</h3>                     <p><strong>Job Opportunities: 2</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Dunkirk Police Department</strong><br>                         <em>Dunkirk Police Department</em><br>                         The City of Dunkirk Police Department is currently accepting Applications for the Position of Police...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Dunkirk" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                                          <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Portland Police Department</strong><br>                         <em>Portland Police Department</em><br>                         Portland Police Department is now hiring! Requirements for this position are: What this position off...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Portland" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_dde9f74757f31008ce4174a7ffa7d766.setContent(html_7d69d628e3a11f4b4815783f498513f7);
+            
+        
+
+        circle_marker_9c8df1f0a45706364985a1dc33c5b087.bindPopup(popup_dde9f74757f31008ce4174a7ffa7d766)
+        ;
+
+        
+    
+    
+            circle_marker_9c8df1f0a45706364985a1dc33c5b087.bindTooltip(
+                `<div>
+                     Jay County: 2 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fc2d4e6a9d9cc492cd79bcde8707ac09 = L.circleMarker(
+                [38.3125, -87.5833],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_f4a15c2142e8de83efcb0d29c5fd091c = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_47f87164b479626fb53b545d0ba02ad7 = $(`<div id="html_47f87164b479626fb53b545d0ba02ad7" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Gibson County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Princeton Police Department</strong><br>                         <em>Princeton Police Department</em><br>                         Princeton PD is accepting applications for the position ofPatrol Officer.We have multiple openings. ...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Princeton" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_f4a15c2142e8de83efcb0d29c5fd091c.setContent(html_47f87164b479626fb53b545d0ba02ad7);
+            
+        
+
+        circle_marker_fc2d4e6a9d9cc492cd79bcde8707ac09.bindPopup(popup_f4a15c2142e8de83efcb0d29c5fd091c)
+        ;
+
+        
+    
+    
+            circle_marker_fc2d4e6a9d9cc492cd79bcde8707ac09.bindTooltip(
+                `<div>
+                     Gibson County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d7c8a54bbe98a81879df02d8b9371755 = L.circleMarker(
+                [41.1397, -85.4986],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_506236fb2ff8a51c174882a04a575d64 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_7b10925fb4e0ddf7d24097df22d8e3cd = $(`<div id="html_7b10925fb4e0ddf7d24097df22d8e3cd" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Whitley County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Whitley County Sheriff’s Department</strong><br>                         <em>Whitley County</em><br>                         Whitley County Sheriff's Department has an opening forfull time dispatcher.Applications will be acce...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#WhitleyCo" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_506236fb2ff8a51c174882a04a575d64.setContent(html_7b10925fb4e0ddf7d24097df22d8e3cd);
+            
+        
+
+        circle_marker_d7c8a54bbe98a81879df02d8b9371755.bindPopup(popup_506236fb2ff8a51c174882a04a575d64)
+        ;
+
+        
+    
+    
+            circle_marker_d7c8a54bbe98a81879df02d8b9371755.bindTooltip(
+                `<div>
+                     Whitley County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_074cc37dac1683665811d516a2c3bd95 = L.circleMarker(
+                [41.4606, -87.0681],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_e26abd38fd70026efad96eb8d29d0113 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_515fd2efd07f3c9ae8106046c504c75f = $(`<div id="html_515fd2efd07f3c9ae8106046c504c75f" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Porter County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Valparaiso University Police Department</strong><br>                         <em>University Police Department</em><br>                         The Valparaiso University Police Department is now accepting applications for the position of1st Cla...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#ValparaisoU" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_e26abd38fd70026efad96eb8d29d0113.setContent(html_515fd2efd07f3c9ae8106046c504c75f);
+            
+        
+
+        circle_marker_074cc37dac1683665811d516a2c3bd95.bindPopup(popup_e26abd38fd70026efad96eb8d29d0113)
+        ;
+
+        
+    
+    
+            circle_marker_074cc37dac1683665811d516a2c3bd95.bindTooltip(
+                `<div>
+                     Porter County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_23450d961cd27c58824083e16a945be9 = L.circleMarker(
+                [41.2444, -85.8606],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_b373a6e3f46e19a6420b6b847f0409de = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_0d436bc01a40a0b35e998e38fc1d4bff = $(`<div id="html_0d436bc01a40a0b35e998e38fc1d4bff" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Kosciusko County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Warsaw Police Department</strong><br>                         <em>Warsaw Police Department</em><br>                         The Warsaw Police Department is currently accepting applications forprobationary patrol officersincl...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Warsaw" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_b373a6e3f46e19a6420b6b847f0409de.setContent(html_0d436bc01a40a0b35e998e38fc1d4bff);
+            
+        
+
+        circle_marker_23450d961cd27c58824083e16a945be9.bindPopup(popup_b373a6e3f46e19a6420b6b847f0409de)
+        ;
+
+        
+    
+    
+            circle_marker_23450d961cd27c58824083e16a945be9.bindTooltip(
+                `<div>
+                     Kosciusko County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_34d1f5594b4933829f83cfb90fc759d9 = L.circleMarker(
+                [40.3472, -87.3536],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_d7490ce0aa403ebd55e6d7b5f7516b18 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_b067c616784145d266432cf2498eb7b1 = $(`<div id="html_b067c616784145d266432cf2498eb7b1" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Warren County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Metropolitan School District of Warren Township</strong><br>                         <em>Warren Township</em><br>                         The Metropolitan School District of Warren Township is now accepting applications for the position o...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Warren" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_d7490ce0aa403ebd55e6d7b5f7516b18.setContent(html_b067c616784145d266432cf2498eb7b1);
+            
+        
+
+        circle_marker_34d1f5594b4933829f83cfb90fc759d9.bindPopup(popup_d7490ce0aa403ebd55e6d7b5f7516b18)
+        ;
+
+        
+    
+    
+            circle_marker_34d1f5594b4933829f83cfb90fc759d9.bindTooltip(
+                `<div>
+                     Warren County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0b1b415e51969bf763f561b86a7b56ee = L.circleMarker(
+                [39.1606, -86.5231],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_49d1e27f3f00cb7599515c1a7dc44310 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_7eee31fe9bfdeca05e3af4cc24233e89 = $(`<div id="html_7eee31fe9bfdeca05e3af4cc24233e89" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Monroe County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Monroe County Sheriff’s Office</strong><br>                         <em>Monroe County</em><br>                         The Monroe County Sheriff's Office is hiring.Starting pay for all recruits $72,7801 Year - $75,1513 ...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#MonroeCo" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_49d1e27f3f00cb7599515c1a7dc44310.setContent(html_7eee31fe9bfdeca05e3af4cc24233e89);
+            
+        
+
+        circle_marker_0b1b415e51969bf763f561b86a7b56ee.bindPopup(popup_49d1e27f3f00cb7599515c1a7dc44310)
+        ;
+
+        
+    
+    
+            circle_marker_0b1b415e51969bf763f561b86a7b56ee.bindTooltip(
+                `<div>
+                     Monroe County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8257f55c1f17e2af5675885d8f4b0297 = L.circleMarker(
+                [40.3889, -86.8931],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_a745a9daf655689804591b054677eb54 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_ca66c8cccc524605ec5bb74408a1da75 = $(`<div id="html_ca66c8cccc524605ec5bb74408a1da75" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Tippecanoe County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Tippecanoe County Sheriff's Office</strong><br>                         <em>Tippecanoe County</em><br>                         The Tippecanoe County Sheriff's Office is continually accepting pre-applications for openMerit Deput...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#TippecanoeCo" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_a745a9daf655689804591b054677eb54.setContent(html_ca66c8cccc524605ec5bb74408a1da75);
+            
+        
+
+        circle_marker_8257f55c1f17e2af5675885d8f4b0297.bindPopup(popup_a745a9daf655689804591b054677eb54)
+        ;
+
+        
+    
+    
+            circle_marker_8257f55c1f17e2af5675885d8f4b0297.bindTooltip(
+                `<div>
+                     Tippecanoe County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_accfaa97846e6303e3677ba9b8e29815 = L.circleMarker(
+                [40.7614, -86.3461],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_4295a8ad04bbcd926508b0049d8cce4a = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_f35b45851476febae1238fe22447f479 = $(`<div id="html_f35b45851476febae1238fe22447f479" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Cass County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Logansport Police Department</strong><br>                         <em>Logansport Police Department</em><br>                         The Logansport Police Department is accepting applications forProbationary Police OfficerApplication...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#Logansport" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_4295a8ad04bbcd926508b0049d8cce4a.setContent(html_f35b45851476febae1238fe22447f479);
+            
+        
+
+        circle_marker_accfaa97846e6303e3677ba9b8e29815.bindPopup(popup_4295a8ad04bbcd926508b0049d8cce4a)
+        ;
+
+        
+    
+    
+            circle_marker_accfaa97846e6303e3677ba9b8e29815.bindTooltip(
+                `<div>
+                     Cass County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4623ef006e75e781b58de796b30f4985 = L.circleMarker(
+                [38.0208, -87.7833],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_be9c5d21f56fddbae61481b5ad3d16de = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_44739b09d1eb6dd0d355c01d729459da = $(`<div id="html_44739b09d1eb6dd0d355c01d729459da" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Posey County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Mount Vernon Police Department</strong><br>                         <em>Vernon Police Department</em><br>                         The Mount Vernon Police Department is offering a $10,000 hiring incentive for Lateral Transfers (wit...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#MountVernon" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_be9c5d21f56fddbae61481b5ad3d16de.setContent(html_44739b09d1eb6dd0d355c01d729459da);
+            
+        
+
+        circle_marker_4623ef006e75e781b58de796b30f4985.bindPopup(popup_be9c5d21f56fddbae61481b5ad3d16de)
+        ;
+
+        
+    
+    
+            circle_marker_4623ef006e75e781b58de796b30f4985.bindTooltip(
+                `<div>
+                     Posey County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8f4819dc4cae8299d2933642061f4470 = L.circleMarker(
+                [40.0506, -86.4686],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffeb3b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 2}
+            ).addTo(map_28a46c4052938fecd77ecf917b54d30b);
+        
+    
+        var popup_6299c5cb00c46c42ba4e4068555e3644 = L.popup({
+  "maxWidth": 400,
+});
+
+        
+            
+                var html_e90bae47e61d5edb948869bc6442b1bb = $(`<div id="html_e90bae47e61d5edb948869bc6442b1bb" style="width: 100.0%; height: 100.0%;">                 <div style="width: 350px;">                     <h3>Boone County</h3>                     <p><strong>Job Opportunities: 1</strong></p>                     <hr>                                      <div style="margin-bottom: 10px; padding: 8px; border-left: 3px solid #007bff; background-color: #f8f9fa;">                         <strong>Boone County Sheriff’s Office</strong><br>                         <em>Boone County</em><br>                         The Boone County Sheriff’s Office is currently accepting pre-applications for Corrections Officer an...<br>                         <small>Posted: 2025-08-31</small>                                                  <br><a href="https://www.in.gov/ilea/bulletin-board/law-enforcement-job-opportunities/#BooneCo" target="_blank" style="color: #007bff; text-decoration: underline;">View Full Posting →</a>                     </div>                     </div></div>`)[0];
+                popup_6299c5cb00c46c42ba4e4068555e3644.setContent(html_e90bae47e61d5edb948869bc6442b1bb);
+            
+        
+
+        circle_marker_8f4819dc4cae8299d2933642061f4470.bindPopup(popup_6299c5cb00c46c42ba4e4068555e3644)
+        ;
+
+        
+    
+    
+            circle_marker_8f4819dc4cae8299d2933642061f4470.bindTooltip(
+                `<div>
+                     Boone County: 1 job(s)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
